@@ -1,0 +1,7 @@
+export const REQUIRED = 'Required'
+export const INVALID_NUMBER = 'Invalid number'
+export const INVALID_EMAIL = 'Invalid email'
+export const INVALID_DATE = 'Invalid date'
+export const INVALID = '*'
+export const INVALID_POSTAL_CODE = 'Invalid code'
+export const INVALID_APPLICATION_ID = 'Invalid ID'

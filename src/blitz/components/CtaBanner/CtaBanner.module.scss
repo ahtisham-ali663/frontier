@@ -1,0 +1,33 @@
+@import '../../theme/index.scss';
+
+.ctaBanner {
+  text-align: center;
+  @include tablet {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-wrap: wrap;
+  }
+
+  .heading {
+    margin-bottom: 1rem;
+    margin-right: 1.25rem;
+    @include tablet {
+      margin-bottom: 0;
+    }
+  }
+
+  .ctaButton {
+    display: inline-block;
+    padding: 0.625rem 1.875rem;
+    width: 343px;
+    @include tablet {
+      padding: 1.0625rem 1.875rem;
+      width: fit-content;
+    }
+    @include mobile {
+      font-size: 1.125rem;
+      width: auto;
+    }
+  }
+}

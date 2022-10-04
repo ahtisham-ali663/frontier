@@ -1,0 +1,71 @@
+@import '../../theme/index.scss';
+
+.rowTitle {
+  padding: 32px 16px;
+  border-bottom: 1px solid $light-gray;
+  cursor: pointer;
+  display: flex;
+  justify-content: space-between;
+  h3 {
+    @include font-bold;
+    font-weight: 700;
+    @include mobile {
+      font-size: 1rem;
+    }
+  }
+}
+
+.rowDescription {
+  padding: 16px;
+  max-height: 0;
+  overflow: hidden;
+  display: none;
+  opacity: 0;
+  a {
+    &:hover {
+      color: $primary;
+    }
+  }
+}
+
+.showDescription {
+  opacity: 1;
+  display: block;
+  max-height: unset;
+}
+
+.icon {
+  width: 16px;
+  height: 16px;
+  transition: all 0.1s linear;
+  transform: rotateZ(360deg);
+}
+
+.chevronContainer {
+  padding-top: 2px;
+  margin-left: 16px;
+}
+
+.spinIcon {
+  transform: rotateZ(180deg);
+}
+.borderUnderDescription {
+  border-bottom: 1px solid $light-gray;
+}
+.borderUnderTitle {
+  border: none;
+  padding-bottom: 0;
+}
+
+.showMoreButtonWrapper {
+  display: flex;
+  justify-content: center;
+}
+
+.showMoreButton {
+  margin-top: 32px;
+  width: auto;
+  @include mobile {
+    width: 100%;
+  }
+}

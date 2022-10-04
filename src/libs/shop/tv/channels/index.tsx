@@ -1,0 +1,6 @@
+export { default as Hero } from './Hero'
+export { default as EntertainmentChannels } from './EntertainmentChannels'
+export { default as SwiperContent } from './SwiperContent'
+export { default as SportsFanFavorites } from './SportsFanFavorites'
+export { default as UltrafastInternet } from './UltrafastInternet'
+export { default as DirectKick } from './DirectKick'

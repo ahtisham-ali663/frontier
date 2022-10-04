@@ -1,0 +1,88 @@
+import { useState } from 'react'
+import clx from 'classnames'
+import { Typography } from 'src/blitz'
+import { Add, Collapse } from 'src/blitz/assets/react-icons'
+import { ILinksAccordion } from './types'
+import css from './LinksAccordion.module.scss'
+
+const LinksAccordion = (props: ILinksAccordion) => {
+  const { list = [], titleClassName, childrenClassName, ...args } = props
+
+  const [showChild, setShowChild] = useState(-1)
+
+  function onChildToggle(index: number) {
+    if (showChild == index) {
+      setShowChild(-1)
+    } else {
+      setShowChild(index)
+    }
+  }
+
+  return (
+    <div {...args}>
+      {list?.map((item, index) => (
+        <LinksAccordionItem
+          key={`links-accordion-${item?.title}-${index}`}
+          isExpanded={index == showChild}
+          {...item}
+          titleClassName={titleClassName}
+          childrenClassName={childrenClassName}
+          onToggle={() => onChildToggle(index)}
+        />
+      ))}
+    </div>
+  )
+}
+const LinksAccordionItem = ({
+  title,
+  children,
+  titleClassName,
+  childrenClassName,
+  isExpanded,
+  onToggle,
+}: any): JSX.Element => {
+  return (
+    <div className={css.accordionItem}>
+      <div
+        role="button"
+        onClick={onToggle}
+        className={clx(css.rowTitle, titleClassName)}
+      >
+        <Typography tagType="h6" styleType="h6">
+          {title}
+        </Typography>
+        {isExpanded ? (
+          <Collapse
+            width={16}
+            height={16}
+            className={clx(css.icon, { [css.spinIcon]: onToggle })}
+          />
+        ) : (
+          <Add
+            width={16}
+            height={16}
+            className={clx(css.icon, { [css.spinIcon]: onToggle })}
+          />
+        )}
+      </div>
+      <div
+        className={clx(css.rowDescription, childrenClassName, {
+          [css.showChildren]: isExpanded,
+        })}
+      >
+        <ul>
+          {children?.map(({ title, href }: any, index: number) => (
+            <li key={`links-${title}-${index}`}>
+              <a href={href}>
+                <Typography tagType="span" styleType="p2">
+                  {title}
+                </Typography>
+              </a>
+            </li>
+          ))}
+        </ul>
+      </div>
+    </div>
+  )
+}
+export default LinksAccordion

@@ -1,0 +1,102 @@
+@import '../../theme/index.scss';
+
+.hero {
+  min-height: auto;
+  background: $dark;
+  margin: 0 auto;
+  box-sizing: border-box;
+  position: relative;
+  overflow: hidden;
+  grid-auto-flow: row;
+  background-image: none;
+  background-image: var(--bg-mobile);
+  min-height: 43rem;
+  display: block;
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: bottom;
+  @include tablet {
+    display: grid;
+    grid-auto-flow: inherit;
+    min-height: 37.5rem;
+    display: flex;
+    height: 100%;
+    background-image: var(--bg-desktop);
+    background-position: 70%;
+    background-size: cover;
+    background-repeat: no-repeat;
+  }
+  @include desktop{
+    background-position: center;
+  }
+}
+
+.heroContainer {
+  z-index: 1;
+  padding: 0 1rem;
+  max-width: 75rem;
+  width: 100%;
+  margin: auto;
+  position: relative;
+  box-sizing: border-box;
+}
+
+.heroLeft {
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  max-width: 670px;
+  @include mobile {
+    max-width: 100%;
+  }
+}
+
+.h1Hero {
+  padding-top: 0;
+  margin-bottom: 0;
+}
+
+.primaryButton {
+  max-width: 250px;
+  @include mobile {
+    font-size: 1rem;
+    max-width: unset;
+    width: 100%;
+    margin: auto;
+    padding: 0.625rem 0;
+  }
+  &:hover {
+    background-color: $white;
+    color: $dark;
+  }
+}
+
+.secondaryButton {
+  border: 2px solid $white;
+  @extend .primaryButton;
+  background-color: transparent;
+}
+
+.subHeader {
+  color: $white;
+  max-width: 34.375rem;
+  margin-top: 24px;
+  @include mobile {
+    padding-bottom: 16px;
+  }
+}
+
+.buttonsContainer {
+  display: flex;
+  gap: 1.25rem;
+  margin-top: 54px;
+  @include mobile {
+    margin-top: 34px;
+  }
+}
+
+.legalText {
+  color: $white;
+  margin-top: 1rem;
+}

@@ -1,0 +1,208 @@
+@import '../../theme/index.scss';
+
+.accordion {
+  cursor: pointer;
+  margin: 0px;
+  @include tabletAndMobile {
+    margin: 0;
+    padding-top: 0px;
+    svg {
+      stroke-width: 1px;
+      stroke: $dark;
+    }
+  }
+  .accordionTitle {
+    display: flex;
+    justify-content: space-between;
+    margin: 0 0 24px;
+    padding-bottom: 16px;
+    @include tablet {
+      color: $white;
+      margin: 0 8px;
+    }
+    @include tablet {
+      margin: 0 16px;
+      margin-top: 16px;
+    }
+    @include tabletAndMobile {
+      margin: 0;
+      padding: 12px 0px;
+    }
+  }
+
+  .accordionNavList {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    .accordionNavList {
+      .navItemTitle {
+        padding-left: 32px;
+      }
+    }
+  }
+
+  .accordionNavList .accordionNavList :first-child {
+    margin: 0px;
+  }
+
+  .accordionNavListItem {
+    min-width: 150px;
+    cursor: pointer;
+  }
+  .navItemTitle {
+    padding: 6px 15px;
+    @include tabletAndMobile {
+      font-size: 1rem;
+    }
+  }
+  .navItemTitle:hover {
+    background-color: $light-border-grey;
+  }
+
+  .accordionLink {
+    display: flex;
+    align-items: center;
+    position: relative;
+    a {
+      color: $white;
+
+      @include tabletAndMobile {
+        color: $primary;
+      }
+    }
+  }
+
+  .chevronDown {
+    @include tablet {
+      path {
+        fill: white;
+      }
+    }
+  }
+
+  .chevronUp {
+    @include tablet {
+      path {
+        fill: white;
+      }
+    }
+  }
+
+  .accordionLinkTitle {
+    cursor: pointer;
+    display: inline-block;
+    position: relative;
+    margin-right: 8px;
+    @include tablet {
+      font-size: 1rem;
+    }
+    @include tabletAndMobile {
+      color: $dark;
+    }
+  }
+
+  .newIcon {
+    margin: 0 8px;
+    @include tablet {
+      margin-bottom: 16px;
+    }
+    rect {
+      @include tablet {
+        fill: white;
+        stroke: none;
+      }
+    }
+  }
+
+  @keyframes growDown {
+    0% {
+      transform: scaleY(0);
+    }
+    100% {
+      transform: scaleY(1);
+    }
+  }
+
+  @keyframes shrinkUp {
+    0% {
+      transform: scaleY(1);
+    }
+    100% {
+      transform: scaleY(0);
+    }
+  }
+
+  .menuContainer {
+    background: white;
+    position: absolute;
+    top: 63px;
+    padding: 11px 0px;
+    transform: scaleY(0);
+    @include tabletAndMobile {
+      padding: 0 29px 1px 16px;
+      position: static;
+    }
+
+    @include tablet {
+      &:before {
+        content: '\A';
+        width: 0;
+        height: 0;
+        border-left: 10px solid transparent;
+        border-right: 10px solid transparent;
+        border-bottom: 10px solid $white;
+        position: absolute;
+        left: 30px;
+        top: -10px;
+      }
+    }
+  }
+
+  .toggleMenuClose {
+    animation: shrinkUp 0.2s ease-in-out forwards;
+    transform-origin: top center;
+  }
+
+  .toggleMenuOpen {
+    animation: growDown 0.2s ease-in-out forwards;
+    transform-origin: top center;
+  }
+}
+
+.badge {
+  position: absolute;
+  width: 41px;
+  height: 18px;
+  right: -35px;
+  top: -4px;
+  background: $white;
+  border-radius: 14px;
+  color: $primary;
+  font-size: 10px;
+  text-align: center;
+  vertical-align: middle;
+  font-weight: 700;
+  text-align: center;
+  border: 1px solid $primary;
+  @include font-bold;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.red {
+  @include tabletAndMobile {
+    color: $primary !important;
+  }
+}
+
+.spinIcon {
+  transform: rotate(180deg);
+  transition: transform 0.3s ease;
+}
+
+.chevronDesktop {
+  &:hover {
+    transform: rotate(180deg);
+  }
+}

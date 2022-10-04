@@ -1,0 +1,436 @@
+@import '../../theme/index.scss';
+
+.header {
+  @include desktop {
+    background: $primary;
+  }
+  @include tabletAndMobile {
+    height: 46px;
+  }
+
+  .headerNav {
+    position: fixed;
+    width: 100%;
+    background-color: $primary;
+    z-index: 999;
+  }
+  .headerNavContainer {
+    display: flex;
+    align-items: center;
+    padding: 0px 16px;
+    position: relative;
+    z-index: 200;
+    max-width: 77rem;
+    margin: 0 auto;
+    min-height: 63px;
+    @include tabletAndMobile {
+      background: $primary;
+      padding: 10px 16px 12px;
+    }
+  }
+  .headerHamburgerButtonContainer {
+    display: flex;
+    flex: 1;
+    margin-right: auto;
+    @include desktop {
+      display: inline-block;
+      flex: none;
+      margin: 0;
+    }
+  }
+  .headerMobileLogo {
+    display: flex;
+    flex: 2;
+    justify-content: center;
+    height: 24px;
+    width: 24px;
+    @include desktop {
+      display: inline-block;
+      flex: none;
+      margin: 0;
+    }
+  }
+
+  .headerHamburgerButton {
+    background: none;
+    border: none;
+    width: 23px;
+    padding: 0;
+  }
+
+  .headerLogo {
+    height: 24px;
+    width: 24px;
+    display: flex;
+    flex: 1;
+    justify-content: center;
+    @include desktop {
+      display: inline-block;
+      flex: none;
+      margin: 0;
+      height: 36px;
+      width: 36px;
+    }
+  }
+
+  .navContainer {
+    @include tabletAndMobile {
+      position: relative;
+      z-index: 100;
+      transform: scaleY(0);
+      position: absolute;
+      background: $white;
+      width: 100%;
+    }
+  }
+
+  .profileTitle {
+    text-overflow: ellipsis;
+    width: 5.3125rem;
+    white-space: nowrap;
+    overflow: hidden;
+  }
+  .navSecondary {
+    display: none;
+    @include desktop {
+      display: flex;
+      margin-left: auto;
+    }
+    .navSecondaryAnchor {
+      display: flex;
+      margin: 0 8px;
+      @include desktop {
+        margin: 0 12px;
+      }
+
+      &:last-child {
+        margin-right: 0;
+      }
+
+      & > svg {
+        margin-left: 8px;
+        margin-top: -4px;
+      }
+      &:first-of-type {
+        .navSecondaryTitle {
+          display: none;
+          @include desktop {
+            display: inline-block;
+          }
+        }
+      }
+      &:nth-child(2) {
+        .navSecondaryTitle {
+          display: inline-block;
+          @include tabletAndMobile {
+            display: none;
+          }
+        }
+      }
+    }
+  }
+
+  .signInMobile {
+    display: flex;
+    flex: 1;
+    justify-content: flex-end;
+    @include desktop {
+      flex: none;
+      margin: none;
+      display: none;
+    }
+    p {
+      @include tabletAndMobile {
+        font-size: 14px;
+      }
+    }
+  }
+
+  .accordionContainer {
+    padding: 12px 21px 14px 16px;
+    @include desktop {
+      padding: 0;
+      display: flex;
+      align-items: center;
+      margin-left: 90px;
+    }
+    @include tabletAndMobile {
+      max-height: calc(100vh - 180px);
+      overflow-y: auto;
+    }
+  }
+
+  .hideUtilityNavMobile {
+    display: none;
+    @include desktop {
+      display: block;
+    }
+  }
+
+  .hideUtilityNavTablet {
+    @include desktop {
+      display: none;
+    }
+  }
+
+  .hideMainNavMobile {
+    display: none;
+    @include desktop {
+      display: flex;
+    }
+  }
+
+  .hideMainNavTablet {
+    @include desktop {
+      display: none;
+    }
+  }
+
+  .hideLogoMobile {
+    display: none;
+    @include desktop {
+      display: block;
+    }
+  }
+
+  .hideLogoTablet {
+    @include desktop {
+      display: none;
+    }
+  }
+
+  .hideHamburgerButton {
+    @include desktop {
+      display: none;
+    }
+  }
+
+  @keyframes firstChildClose {
+    0% {
+      transform: rotate(45deg) translate(3px, -3px);
+    }
+
+    100% {
+      transform: none;
+    }
+  }
+
+  @keyframes secondChildClose {
+    0% {
+      opacity: 0;
+    }
+
+    100% {
+      opacity: 1;
+    }
+  }
+
+  @keyframes thirdChildClose {
+    0% {
+      transform: rotate(-45deg) translate(-9px, -2px);
+    }
+
+    100% {
+      transform: none;
+    }
+  }
+
+  @keyframes firstChildOpen {
+    0% {
+      transform: none;
+    }
+
+    100% {
+      transform: rotate(45deg) translate(3px, -3px);
+    }
+  }
+
+  @keyframes secondChildOpen {
+    0% {
+      opacity: 1;
+    }
+
+    100% {
+      opacity: 0;
+    }
+  }
+
+  @keyframes thirdChildOpen {
+    0% {
+      transform: none;
+    }
+
+    100% {
+      transform: rotate(-45deg) translate(-10px, -3px);
+    }
+  }
+
+  .toggleButtonClose {
+    :first-child {
+      animation: firstChildClose 0.3s forwards;
+    }
+
+    :nth-child(2) {
+      animation: secondChildClose 0.3s forwards;
+    }
+
+    :nth-child(3) {
+      animation: thirdChildClose 0.3s forwards;
+    }
+  }
+
+  .toggleButtonOpen {
+    :first-child {
+      animation: firstChildOpen 0.3s forwards;
+    }
+
+    :nth-child(2) {
+      animation: secondChildOpen 0.3s forwards;
+    }
+
+    :nth-child(3) {
+      animation: thirdChildOpen 0.3s forwards;
+    }
+  }
+
+  @keyframes growDown {
+    0% {
+      transform: scaleY(0);
+    }
+    100% {
+      transform: scaleY(1);
+    }
+  }
+
+  @keyframes shrinkUp {
+    0% {
+      transform: scaleY(1);
+    }
+    100% {
+      transform: scaleY(0);
+    }
+  }
+
+  .toggleNavClose {
+    animation: shrinkUp 0.2s ease-in-out forwards;
+    transform-origin: top center;
+  }
+
+  .toggleNavOpen {
+    animation: growDown 0.2s ease-in-out forwards;
+    transform-origin: top center;
+  }
+
+  .loggedInUserNameWrapper {
+    display: flex;
+    align-items: center;
+    margin-left: 16px;
+    position: relative;
+    & > svg {
+      margin-left: 6px;
+    }
+    & :hover {
+      cursor: pointer;
+    }
+  }
+
+  .profileDropdownContainer {
+    background: $white;
+  }
+
+  .profileDropdown {
+    position: absolute;
+    top: 20px;
+    padding-top: 23px;
+    min-width: 216px;
+    right: 0px;
+    overflow: hidden;
+    animation: shrinkUp 0.2s ease-in-out forwards;
+    max-height: 0;
+    transform-origin: top center;
+    &.profileDropdownOpen {
+      animation: growDown 0.2s ease-in-out forwards;
+      max-height: unset;
+    }
+    @include tabletAndMobile {
+      padding-top: 0;
+      min-width: 100vw;
+      top: 46px;
+      right: 0px;
+      &:before {
+        content: '';
+        display: none;
+      }
+    }
+    & ul {
+      list-style: none;
+      margin: 0;
+      padding: 0px;
+      align-items: center;
+      & li {
+        padding: 6px 13px;
+        &:hover {
+          background-color: $light-border-grey;
+        }
+      }
+      & a:first-child li {
+        font-weight: 700;
+        margin-bottom: 8px;
+        &:hover {
+          background-color: transparent;
+        }
+      }
+    }
+    &:before {
+      content: '\A';
+      width: 0;
+      height: 0;
+      border-left: 10px solid transparent;
+      border-right: 10px solid transparent;
+      border-bottom: 10px solid $white;
+      position: absolute;
+      right: 48px;
+      top: 13px;
+      @include tabletAndMobile {
+        right: 10px;
+        left: unset;
+      }
+    }
+  }
+  .profileCloseIcon {
+    position: absolute;
+    top: 5px;
+    right: 12px;
+    @include desktop {
+      display: none;
+    }
+  }
+  .mobileUtilityNav {
+    padding-top: 5px;
+  }
+  .profileTitleDropDownlist {
+    color: $dark2;
+  }
+  .headerBanner {
+    padding: 7px 0px;
+    text-align: center;
+    background-color: $background-gray;
+    .bannerText {
+      color: $primary;
+      & a {
+        color: $dark;
+        text-decoration: underline;
+      }
+    }
+  }
+  .showSearch {
+    display: block;
+  }
+  .hideSearch {
+    display: none;
+  }
+  .buyLinkContainer {
+    margin-right: 12px;
+  }
+}
+

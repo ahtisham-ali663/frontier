@@ -1,0 +1,133 @@
+@import '../../theme/index.scss';
+@import './../Typography/Typography.module.scss';
+
+.resourceWrapper {
+  padding: 40px 16px 0;
+  max-width: 938px;
+  margin: 0 auto;
+  color: $dark;
+
+  @include mobile {
+    padding: 32px 16px 0px 16px;
+  }
+
+  img {
+    max-width: 100%;
+    margin: 1rem 0;
+  }
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6 {
+    margin: 0px 0px 16px;
+  }
+
+  .defaultBold {
+    b,
+    strong {
+      @include font-bold;
+    }
+  }
+
+  h1,
+  [styleType='h1'] {
+    @extend .h1;
+    @include font-bold;
+    text-transform: none;
+  }
+
+  h2,
+  [styleType='h2'] {
+    @extend .h2;
+  }
+
+  h3,
+  [styleType='h3'] {
+    @extend .h3;
+  }
+
+  h4,
+  [styleType='h4'] {
+    @extend .h4;
+  }
+
+  h5,
+  [styleType='h5'] {
+    @extend .h5;
+  }
+
+  h6,
+  [styleType='h6'] {
+    @extend .h6;
+  }
+  [styleType='p1'] {
+    @extend .p1;
+    @include mobile {
+      font-size: 1rem;
+    }
+  }
+  p {
+    @extend .p2;
+    margin-bottom: 2rem;
+  }
+  
+  [styleType*='mb1'] {
+    margin-bottom: 1rem;
+  }
+
+  hr {
+    margin: 32px 0px 64px 0px;
+    border: none;
+    border-top: 1px solid $light-gray;
+  }
+
+  strong {
+    font-family: 'PP OBJECT SANS BOLD';
+  }
+  ul:not([styleType='raw']) {
+    font-family: 'PP OBJECT SANS';
+    list-style: none;
+    padding: 0;
+    & li {
+      @extend .p2;
+      position: relative;
+      margin: 0;
+      padding-left: 1.5em;
+      p {
+        @extend .p2;
+        margin: 0 1rem;
+      }
+    }
+    & li:before {
+      content: '';
+      height: 4px;
+      width: 4px;
+      background-color: $dark;
+      display: inline-block;
+      border-radius: 100%;
+      position: absolute;
+      left: 1rem;
+      top: 0.5625rem;
+    }
+  }
+
+  a {
+    text-decoration: underline;
+    @include font-bold;
+    &:hover {
+      color: $primary;
+    }
+  }
+  sup,
+  sub {
+    margin-right: 4px;
+    line-height: 0;
+  }
+  sup,
+  sub {
+    margin-right: 4px;
+  }
+}
+

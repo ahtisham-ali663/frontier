@@ -1,0 +1,8 @@
+export { default as FiberInternetFAQ } from './Faq'
+export { default as StreamingOptions } from './StreamingOptions'
+export { default as Hero } from './Hero'
+export { default as FrontierCustomers } from './FrontierCustomers'
+export { default as YouTubeTvBenefits } from './YouTubeTvBenefits'
+export { default as DirectTvBenefits } from './DirectTvBenefits'
+export { default as UserActionsCards } from './UserActionsCards'
+export { default as Comparison } from './ComparisonTable'

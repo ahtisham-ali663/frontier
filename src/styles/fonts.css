@@ -1,0 +1,29 @@
+@font-face {
+  font-family: 'frguide';
+  src: url(../../public/fonts/FrGuide-Book.eot);
+  src: url(../../public/fonts/FrGuide-Book.woff);
+  src: url(../../public/fonts/FrGuide-Book.woff2);
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'frguide bold';
+  src: url(../../public/fonts/FrGuide-Bold.eot);
+  src: url(../../public/fonts/FrGuide-Bold.woff);
+  src: url(../../public/fonts/FrGuide-Bold.woff2);
+  font-display: swap;
+}
+@font-face {
+  font-family: 'frguide black';
+  src: url(../../public/fonts/FrGuide-Black.eot);
+  src: url(../../public/fonts/FrGuide-Black.woff);
+  src: url(../../public/fonts/FrGuide-Black.woff2);
+  font-display: swap;
+}
+@font-face {
+  font-family: 'frguide heavy';
+  src: url(../../public/fonts/FrGuide-Heavy.eot);
+  src: url(../../public/fonts/FrGuide-Heavy.woff);
+  src: url(../../public/fonts/FrGuide-Heavy.woff2);
+  font-display: swap;
+}

@@ -1,0 +1,75 @@
+@import '../../theme/index.scss';
+
+.loading {
+    align-items: center;
+    display: flex;
+    justify-content: center;
+    height: 100%;
+    width: 100%;
+    margin: -30px auto 40px;
+  }
+  
+  .loading__dot {
+    background-color: rgba(20, 25, 40,.25);
+    display: inline-block;
+    height: 10px;
+    width: 10px;
+    margin: 10px;
+    border-radius: 50%;
+  }
+
+@keyframes dotPrimary {
+  0% { background-color: rgba(20, 25, 40,.25); transform: scale(1); }
+  50% { background-color: $primary; transform: scale(1.5); }
+  100% { background-color: rgba(20, 25, 40,.25); transform: scale(1); }
+}
+
+@keyframes dotSecondary {
+  0% { background-color: rgba(20, 25, 40,.25); transform: scale(1); }
+  50% { background-color: $secondary; transform: scale(1.5); }
+  100% { background-color: rgba(20, 25, 40,.25); transform: scale(1); }
+}
+
+@keyframes dotBlack {
+  0% { background-color: rgba(20, 25, 40,.25); transform: scale(1); }
+  50% { background-color: $dark; transform: scale(1.5); }
+  100% { background-color: rgba(20, 25, 40,.25); transform: scale(1); }
+}
+
+
+.dotPrimary {
+  .loading__dot {
+    animation: dotPrimary 1.5s ease-in-out .1s infinite;
+  }
+  .loading__dot:nth-of-type(2) {
+    animation: dotPrimary 1.5s ease-in-out .5s infinite;
+  }
+  .loading__dot:nth-of-type(3) {
+      animation: dotPrimary 1.5s ease-in-out 1s infinite;
+  }
+}
+
+.dotSecondary {
+  .loading__dot {
+    animation: dotSecondary 1.5s ease-in-out .1s infinite;
+  }
+  .loading__dot:nth-of-type(2) {
+    animation: dotSecondary 1.5s ease-in-out .5s infinite;
+  }
+  .loading__dot:nth-of-type(3) {
+    animation: dotSecondary 1.5s ease-in-out 1s infinite;
+  }
+}
+
+.dotBlack {
+  .loading__dot {
+    animation: dotBlack 1.5s ease-in-out .1s infinite;
+  }
+  .loading__dot:nth-of-type(2) {
+    animation: dotBlack 1.5s ease-in-out .5s infinite;
+  }
+  .loading__dot:nth-of-type(3) {
+      animation: dotBlack 1.5s ease-in-out 1s infinite;
+  }
+}
+

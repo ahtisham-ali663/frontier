@@ -1,0 +1,44 @@
+@import '../../theme/index.scss';
+.headerBanner {
+  padding: 7px 5px;
+  text-align: center;
+  background-color: $light-bg-gray;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  gap: 24px;
+  @include mobile {
+    flex-direction: column;
+    gap: 0px;
+  }
+  span {
+    color: $primary2;
+    &[styleType='h5'] {
+      font-size: 1.5rem;
+      line-height: 2rem;
+      margin: 0;
+      @include font-bold;
+      @include mobile {
+        font-size: 1.125rem;
+        line-height: 1.625rem;
+      }
+    }
+    a {
+      color: $dark;
+      &:hover {
+        color: $primary;
+        text-decoration: underline;
+      }
+      @include mobile {
+        margin-bottom: 1.5rem;
+      }
+    }
+  }
+  .planBtn {
+    max-width: max-content;
+    @include mobile {
+      margin-bottom: .5625rem;
+    }
+  }
+}
