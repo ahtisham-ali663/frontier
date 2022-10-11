@@ -28,6 +28,7 @@ export type ITypographyFontType =
   | 'mediumFont'
   | 'boldFont'
   | 'regularBandwidthFont'
+  | string
 
 export interface ITypography {
   styleType?: ITypographyStyleType
