@@ -43,6 +43,8 @@ import SocialMediaLinks from './components/SocialMediaLinks'
 import VideoCollection from './components/VideoCollection'
 import Breadcrumb from './components/Breadcrumb'
 import VideoModal from './components/VideoModal'
+import ToggleButton from './components/ToggleButton'
+import TextIcon from './components/IconWithText'
 
 export {
   Typography,
@@ -90,6 +92,8 @@ export {
   VideoCollection,
   Breadcrumb,
   VideoModal,
+  ToggleButton,
+  TextIcon,
 }
 
 export type { ITypography } from './components/Typography'
