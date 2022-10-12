@@ -1,7 +1,6 @@
 import { useState } from 'react'
 import { makeStyles } from '@material-ui/core'
 import { Typography, ToggleButton, TextIcon } from 'src/blitz'
-import { COMPONENT_WRAPPER } from 'src/constants'
 
 const Toggle = () => {
   const classes = useStyles()
@@ -15,109 +14,103 @@ const Toggle = () => {
   const onTogglePower = (data: boolean) => {
     isPowerCheck(data)
   }
-
   return (
     <div className={classes.root}>
-      <div className={classes.wrapper}>
-        <div className={classes.bottomWrapper}>
-          <div className={classes.content}>
-            <ToggleButton data={onToggleService} />
-            <TextIcon
-              iconColor="#fd7e14"
-              title={'Frontier Service Outages'}
-              fontType={serviceCheck ? 'regularFont' : 'boldFont'}
-            />
-            <div className={classes.hideBox}></div>
-          </div>
+      <div className={classes.content}>
+        <ToggleButton data={onToggleService} />
 
-          <div className={classes.content}>
-            <ToggleButton data={onTogglePower} />
-            <div>
-              <TextIcon
-                iconColor="#0d6efd"
-                title={'Power outages'}
-                fontType={powerCheck ? 'regularFont' : 'boldFont'}
-              />
-              <TextIcon
-                iconColor="red"
-                title={'Power shutoff (PSPS) /'}
-                fontType={powerCheck ? 'regularFont' : 'boldFont'}
-              />
-              <TextIcon
-                iconColor=""
-                title={'States of Emergency'}
-                fontType={powerCheck ? 'boldFont' : 'regularFont'}
-              />
-            </div>
+        <TextIcon
+          iconColor="#fd7e14"
+          title={'Frontier Service Outages'}
+          fontType={serviceCheck ? 'regularFont' : 'boldFont'}
+        />
+      </div>
 
-            <div className={powerCheck ? classes.box : classes.hideBox}></div>
-          </div>
-
-          <div className={classes.content}>
-            <Typography tagType="p" styleType="p2">
-              {'Frontier Service Areas'}
-            </Typography>
-            <div className={classes.box1}></div>
-          </div>
+      <div className={classes.content}>
+        <ToggleButton data={onTogglePower} />
+        <div>
+          <TextIcon
+            iconColor="#0d6efd"
+            title={'Power outages'}
+            fontType={powerCheck ? 'regularFont' : 'boldFont'}
+          />
+          <TextIcon
+            iconColor="red"
+            title={'Power shutoff (PSPS) /'}
+            fontType={powerCheck ? 'regularFont' : 'boldFont'}
+          />
+          <TextIcon
+            iconColor=""
+            title={'States of Emergency'}
+            fontType={powerCheck ? 'boldFont' : 'regularFont'}
+          />
         </div>
+
+        <div
+          className={
+            powerCheck ? classes.emergencyBox : classes.hideEmergencyBox
+          }
+        ></div>
+      </div>
+
+      <div className={classes.content}>
+        <Typography tagType="p" styleType="p2">
+          {'Frontier Service Areas'}
+        </Typography>
+        <div className={classes.serviceBox}></div>
       </div>
     </div>
   )
 }
 
 const useStyles = makeStyles(({ breakpoints }) => ({
-  root: {
-    ...COMPONENT_WRAPPER,
-    padding: '10px 0 0 0',
-
-    [breakpoints.down('sm')]: {
-      padding: '10px 50px 0 0',
-      display: 'flex',
-    },
-  },
-  box: {
+  emergencyBox: {
     background: '#00FFFF',
     height: '3.5rem',
     width: '5rem',
+    opacity: 1,
+    transition: 'all .5s ease-out',
+    marginLeft: '2rem',
   },
-  box1: {
+  serviceBox: {
     background: 'red',
     height: '3.5rem',
     width: '5rem',
+    [breakpoints.up('md')]: {
+      marginLeft: '3rem',
+    },
+    [breakpoints.down('sm')]: {
+      marginLeft: '6.5rem',
+    },
   },
-  hideBox: {
+  hideEmergencyBox: {
     background: 'white',
     height: '3.5rem',
     width: '5rem',
+    transition: 'all .5s ease-out',
+    marginLeft: '2rem',
   },
-  wrapper: {
-    // ...COMPONENT_WRAPPER,
-    [breakpoints.down('sm')]: {
-      margin: '2rem 2rem 2rem 2rem',
-    },
-  },
-  bottomWrapper: {
+  root: {
     display: 'flex',
     alignItems: 'flex-start',
-    [breakpoints.down('sm')]: {
+    marginBottom: '1rem',
+    [breakpoints.down('md')]: {
+      flexWrap: 'wrap',
+    },
+    [breakpoints.down('xs')]: {
       flexDirection: 'column',
-      // alignItems: 'center',
-      // display: 'flex',
-      // justifyContent: 'space-between',
-      // marignRight: '1rem',
+      flexWrap: 'nowrap',
     },
   },
   content: {
-    flex: 1,
+    flex: '2 0 auto',
     marginTop: '1rem',
     display: 'flex',
     alignItems: 'flex-start',
-    justifyContent: 'space-between',
-    marginRight: '1rem',
+    marginLeft: '1rem',
     '& p': { marginTop: 0, marginBottom: '1rem' },
     [breakpoints.down('sm')]: {
-      alignItems: 'flex-start',
-      justifyContent: 'space-between',
+      width: '100%',
     },
   },
 }))

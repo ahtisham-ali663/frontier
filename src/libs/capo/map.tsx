@@ -10,6 +10,7 @@ import {
 import 'leaflet/dist/leaflet.css'
 import { stateData } from '../../constants'
 import ToggleButton from './toggle'
+import { makeStyles } from '@material-ui/core'
 
 const Map = () => {
   // const cordinates = statesData.features.map((state) => {
@@ -18,14 +19,15 @@ const Map = () => {
   //   ])
   //   return cordinates
   // })
+  const classes = useStyles()
   return (
-    <div>
+    <div className={classes.root}>
       <ToggleButton />
       <MapContainer
         center={[36.78991208264064, -118.94444972062315]}
         zoom={5}
         scrollWheelZoom={true}
-        style={{ height: 450, width: '90%', margin: 'auto' }}
+        style={{ height: 450 }}
       >
         <TileLayer
           url="https://api.maptiler.com/maps/basic-v2/256/{z}/{x}/{y}.png?key=elOJ3hZCpng5pPPHyNW1"
@@ -70,5 +72,12 @@ const Map = () => {
     </div>
   )
 }
+
+const useStyles = makeStyles(() => ({
+  root: {
+    width: '90%',
+    margin: 'auto',
+  },
+}))
 
 export default Map
