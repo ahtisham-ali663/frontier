@@ -57,6 +57,7 @@
     "react-redux": "^7.2.4",
     "redux-thunk": "^2.3.0",
     "swiper": "^6.8.1",
+    "topojson-client": "^3.1.0",
     "webpack": "^4.46.0",
     "yup": "^0.32.11"
   },
@@ -83,6 +84,7 @@
     "@types/react-recaptcha": "^2.3.4",
     "@types/redux-mock-store": "^1.0.3",
     "@types/string-similarity": "^4.0.0",
+    "@types/topojson-client": "^3.1.1",
     "@types/uuid": "^8.3.1",
     "@types/yup": "^0.29.14",
     "@typescript-eslint/eslint-plugin": "^4.28.4",
