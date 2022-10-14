@@ -1,8 +1,8 @@
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
 import { makeStyles } from '@material-ui/core'
 import { Typography, ToggleButton, TextIcon } from 'src/blitz'
 
-const Toggle = () => {
+const Toggle = ({ ...props }) => {
   const classes = useStyles()
   const [serviceCheck, isServiceCheck] = useState(false)
   const [powerCheck, isPowerCheck] = useState(false)
@@ -14,6 +14,10 @@ const Toggle = () => {
   const onTogglePower = (data: boolean) => {
     isPowerCheck(data)
   }
+
+  useEffect(() => {
+    props.onToggleHandler(serviceCheck, powerCheck)
+  }, [serviceCheck, powerCheck])
   return (
     <div className={classes.root}>
       <div className={classes.content}>
