@@ -1,12 +1,5 @@
-import {
-  MapContainer,
-  TileLayer,
-  Marker,
-  Popup,
-  GeoJSON,
-  useMapEvents,
-} from 'react-leaflet'
-import { useState } from 'react'
+import { MapContainer, TileLayer, Marker, Popup, GeoJSON } from 'react-leaflet'
+import { useState, useEffect } from 'react'
 import 'leaflet/dist/leaflet.css'
 import { outage } from './outage'
 import L from 'leaflet'
@@ -14,59 +7,55 @@ import * as topojson from 'topojson-client'
 import { ftrCaTopoJson } from './allMapData'
 import ToggleButton from './toggle'
 import { makeStyles } from '@material-ui/core'
+import axios from 'axios'
+import { API_ROUTES } from 'src/constants'
+import { GeometryObject, Topology } from 'topojson-specification'
+import AdjustZoomLevel from './adjustZoomLevel'
 
 const Map = () => {
   // const [isService, setIsService] = useState(false)
   const [isPower, setIsPower] = useState(false)
+  const [zoomLevel, setZoomLevel] = useState(5)
 
   const serviceCounties = topojson.feature(
-    ftrCaTopoJson,
-    ftrCaTopoJson.objects.Service_Counties,
+    ftrCaTopoJson as unknown as Topology,
+    ftrCaTopoJson.objects.Service_Counties as GeometryObject,
   )
   const serviceBounds = topojson.feature(
-    ftrCaTopoJson,
-    ftrCaTopoJson.objects.Service_Bounds,
+    ftrCaTopoJson as unknown as Topology,
+    ftrCaTopoJson.objects.Service_Bounds as GeometryObject,
   )
   const CaState = topojson.feature(
-    ftrCaTopoJson,
-    ftrCaTopoJson.objects.CA_State,
+    ftrCaTopoJson as unknown as Topology,
+    ftrCaTopoJson.objects.CA_State as GeometryObject,
   )
   const ZipCodes = topojson.feature(
-    ftrCaTopoJson,
-    ftrCaTopoJson.objects.Service_ZipCodes,
+    ftrCaTopoJson as unknown as Topology,
+    ftrCaTopoJson.objects.Service_ZipCodes as GeometryObject,
   )
 
-  function MyComponent() {
-    const [zoomLevel, setZoomLevel] = useState(5)
-    const mapEvents = useMapEvents({
-      zoomend: () => {
-        setZoomLevel(mapEvents.getZoom())
-      },
+  const OnEachZipCodeFeature = (feature: any, layer: any) => {
+    const tooltipChildren = feature.properties.Zcta5ce10
+    const content = `<div> ${tooltipChildren} </div>`
+    return layer.bindTooltip(content, {
+      direction: 'center',
+      permanent: true,
+      className: classes.toolTipContent,
     })
-    if (zoomLevel >= 10) {
-      return (
-        <GeoJSON
-          data={ZipCodes}
-          style={{
-            fillColor: '#FF0000',
-            weight: 0.8,
-            color: '#00FFFF',
-            fillOpacity: 0,
-          }}
-          onEachFeature={(feature, layer) => {
-            const tooltipChildren = feature.properties.Zcta5ce10
-            const content = `<div> ${tooltipChildren} </div>`
-            layer.bindTooltip(content, {
-              direction: 'center',
-              permanent: true,
-              className: classes.toolTipContent,
-            })
-          }}
-        ></GeoJSON>
-      )
-    }
-    return null
   }
+
+  useEffect(() => {
+    const getOutages = async () => {
+      try {
+        const outages = await axios.get(API_ROUTES.OUTAGES)
+        console.log(outages.data, 'get outages details')
+      } catch (error) {
+        console.log('errorors', error)
+      }
+    }
+
+    getOutages()
+  }, [])
 
   const pin = 'https://unpkg.com/leaflet@1.7.1/dist/images/marker-icon.png'
   const pinMB = L.icon({
@@ -119,7 +108,7 @@ const Map = () => {
                     icon={pinMB}
                     eventHandlers={{
                       mouseover: (event) => event.target.openPopup(),
-                      // mouseout: (event) => event.target.closePopup(),
+                      click: (event) => event.target.openPopup(),
                     }}
                   >
                     <Popup>
@@ -154,7 +143,7 @@ const Map = () => {
 
         <GeoJSON
           data={serviceCounties}
-          style={{ fillColor: 'grey', weight: 0.3, fillOpacity: 0.3 }}
+          style={{ fillColor: 'grey', weight: 0.2, fillOpacity: 0 }}
         />
         <GeoJSON
           data={CaState}
@@ -165,25 +154,19 @@ const Map = () => {
           style={{ fillColor: 'red', weight: 0.8, fillOpacity: 0.3 }}
         />
 
-        {/* <GeoJSON
-          data={ZipCodes}
-          style={{
-            fillColor: '#FF0000',
-            weight: 0.8,
-            color: '#00FFFF',
-            fillOpacity: 0,
-          }}
-          onEachFeature={(feature, layer) => {
-            const tooltipChildren = feature.properties.Zcta5ce10
-            const content = `<div> ${tooltipChildren} </div>`
-            layer.bindTooltip(content, {
-              direction: 'center',
-              permanent: true,
-              className: classes.toolTipContent,
-            })
-          }}
-        ></GeoJSON> */}
-        <MyComponent />
+        <AdjustZoomLevel setZoomLevel={setZoomLevel} />
+        {zoomLevel > 9 && (
+          <GeoJSON
+            data={ZipCodes}
+            style={{
+              fillColor: '#FF0000',
+              weight: 0.8,
+              color: '#00FFFF',
+              fillOpacity: 0,
+            }}
+            onEachFeature={OnEachZipCodeFeature}
+          ></GeoJSON>
+        )}
       </MapContainer>
     </div>
   )
