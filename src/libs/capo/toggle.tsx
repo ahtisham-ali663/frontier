@@ -1,11 +1,18 @@
 import { useState, useEffect } from 'react'
 import { makeStyles } from '@material-ui/core'
 import { Typography, ToggleButton, TextIcon } from 'src/blitz'
+import BlueSvg from 'src/blitz/assets/png/blueSvgIcon'
+import YellowSvg from 'src/blitz/assets/png/yellowSvgIcon'
+import RedSvg from 'src/blitz/assets/png/redSvgIcon'
+interface PageProps {
+  onToggleHandler: (serviceCheck: boolean, powerCheck: boolean) => void
+}
 
-const Toggle = ({ ...props }) => {
+const Toggle = (props: PageProps) => {
   const classes = useStyles()
   const [serviceCheck, isServiceCheck] = useState(false)
   const [powerCheck, isPowerCheck] = useState(false)
+  const { onToggleHandler } = props
 
   const onToggleService = (data: boolean) => {
     isServiceCheck(data)
@@ -16,7 +23,7 @@ const Toggle = ({ ...props }) => {
   }
 
   useEffect(() => {
-    props.onToggleHandler(serviceCheck, powerCheck)
+    onToggleHandler(serviceCheck, powerCheck)
   }, [serviceCheck, powerCheck])
   return (
     <div className={classes.root}>
@@ -24,30 +31,32 @@ const Toggle = ({ ...props }) => {
         <ToggleButton data={onToggleService} />
 
         <TextIcon
-          iconColor="#fd7e14"
           title={'Frontier Service Outages'}
           fontType={serviceCheck ? 'regularFont' : 'boldFont'}
-        />
+        >
+          <YellowSvg width={'24px'} height={'24px'} />
+        </TextIcon>
       </div>
 
       <div className={classes.content}>
         <ToggleButton data={onTogglePower} />
         <div>
           <TextIcon
-            iconColor="#0d6efd"
             title={'Power outages'}
             fontType={powerCheck ? 'regularFont' : 'boldFont'}
-          />
+          >
+            <BlueSvg width={'24px'} height={'24px'} />
+          </TextIcon>
           <TextIcon
-            iconColor="red"
             title={'Power shutoff (PSPS) /'}
             fontType={powerCheck ? 'regularFont' : 'boldFont'}
-          />
+          >
+            <RedSvg width={'24px'} height={'24px'} />
+          </TextIcon>
           <TextIcon
-            iconColor=""
             title={'States of Emergency'}
             fontType={powerCheck ? 'boldFont' : 'regularFont'}
-          />
+          ></TextIcon>
         </div>
 
         <div

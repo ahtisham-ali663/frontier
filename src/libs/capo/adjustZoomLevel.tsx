@@ -1,9 +1,14 @@
 import { useMapEvents } from 'react-leaflet'
 
-const AdjustZoomLevel = ({ ...props }) => {
+interface PageProps {
+  setZoomLevel: (event: any) => void
+}
+
+const AdjustZoomLevel = (props: PageProps) => {
+  const { setZoomLevel } = props
   const mapEvents = useMapEvents({
     zoomend: () => {
-      props.setZoomLevel(mapEvents.getZoom())
+      setZoomLevel(mapEvents.getZoom())
     },
   })
   return null

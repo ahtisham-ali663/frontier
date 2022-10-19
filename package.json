@@ -46,6 +46,7 @@
     "jstz": "^2.1.1",
     "leaflet": "^1.9.2",
     "leaflet-boundary-canvas": "^1.0.0",
+    "leaflet-defaulticon-compatibility": "^0.1.1",
     "moment": "^2.29.4",
     "next": "12.1.0",
     "nookies": "^2.5.2",
