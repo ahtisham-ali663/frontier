@@ -5,7 +5,7 @@ import BlueSvg from 'src/blitz/assets/png/blueSvgIcon'
 import YellowSvg from 'src/blitz/assets/png/yellowSvgIcon'
 import RedSvg from 'src/blitz/assets/png/redSvgIcon'
 interface PageProps {
-  onToggleHandler: (serviceCheck: boolean, powerCheck: boolean) => void
+  onToggleHandler: () => void
 }
 
 const Toggle = (props: PageProps) => {

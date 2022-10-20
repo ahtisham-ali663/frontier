@@ -22,9 +22,6 @@ const getServiceOutages = async (req: NextApiRequest, res: NextApiResponse) => {
   }
 }
 
-export default async function handler(
-  req: NextApiRequest,
-  res: NextApiResponse,
-) {
-  return await getServiceOutages(req, res)
+export default function handler(req: NextApiRequest, res: NextApiResponse) {
+  return getServiceOutages(req, res)
 }

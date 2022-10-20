@@ -20,13 +20,8 @@ const getOutages = async (req: NextApiRequest, res: NextApiResponse) => {
       },
     )
 
-    // const response = await axios.get(`https://frontier.com/js/capo/ftr_Ca_TopoBounds.js`)
-
-    // const response = await axios.get(`http://localhost:8000/capo`)
-
     return res.status(200).json(response.data)
   } catch (error) {
-    console.log(error, 'error message')
     res.status(500).json({ env: process.env, error })
   }
 }

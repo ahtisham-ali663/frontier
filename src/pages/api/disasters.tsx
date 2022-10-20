@@ -16,8 +16,6 @@ const getDisasters = async (req: NextApiRequest, res: NextApiResponse) => {
       },
     )
 
-    // const response = await axios.get(`https://frontier.com/js/capo/ftr_Ca_TopoBounds.js`)
-
     return res.status(200).json(response.data)
   } catch (error) {
     res.status(500).json({ env: process.env, error })

@@ -1,6 +1,7 @@
 import { useMapEvents } from 'react-leaflet'
 
 interface PageProps {
+  // eslint-disable-next-line no-unused-vars
   setZoomLevel: (event: any) => void
 }
 

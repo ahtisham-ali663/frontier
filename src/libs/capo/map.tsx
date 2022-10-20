@@ -20,6 +20,7 @@ import PopupData from './popupData'
 import BlueSvg from 'src/blitz/assets/png/blueSvgIcon'
 import YellowSvg from 'src/blitz/assets/png/yellowSvgIcon'
 import ReactDOMServer from 'react-dom/server'
+import { Typography } from 'src/blitz'
 
 const Map = () => {
   const [isService, setIsService] = useState(false)
@@ -43,7 +44,6 @@ const Map = () => {
     name: '',
     features: [],
   })
-
   const [serviceOutage, setServiceOutage] = useState<{
     type: string
     name: string
@@ -53,6 +53,9 @@ const Map = () => {
     name: '',
     features: [],
   })
+  const [serviceOutageError, setServiceOutageError] = useState('')
+  const [outageError, setOutageError] = useState('')
+  const [disasterError, setDisasterError] = useState('')
 
   const serviceCounties = topojson.feature(
     ftrCaTopoJson as unknown as Topology,
@@ -82,8 +85,8 @@ const Map = () => {
   }
 
   useEffect(async () => {
-    const disester = await getDisasters()
     const outages = await getOutages()
+    const disester = await getDisasters()
     const serviceOutages = await getServiceOutages()
 
     if (outages) {
@@ -106,12 +109,12 @@ const Map = () => {
   ) => {
     const disasterCounties = servieCounties.features.reduce(
       (soeCounties, county) => {
-        county.properties.soe = disasterData.filter((event) => {
+        county.properties.soe = disasterData?.filter((event) => {
           if (event.COUNTY_NAME == county.properties.Name20) {
             return event
           }
         })
-        if (county.properties.soe.length > 0) {
+        if (county.properties.soe?.length > 0) {
           return soeCounties.concat(county)
         }
         return soeCounties
@@ -124,7 +127,6 @@ const Map = () => {
       name: 'GeoJSON',
       features: disasterCounties,
     }
-    console.log(disasterCountiesData, 'disasterCountiesData')
     return disasterCountiesData
   }
 
@@ -133,7 +135,9 @@ const Map = () => {
       const disasters = await axios.get(API_ROUTES.DISASTERS)
       return disasters.data
     } catch (error) {
-      console.log('disaster error', error)
+      setDisasterError(
+        'Unable to retrieve state of emergency data. Please try again later.',
+      )
     }
   }
 
@@ -142,7 +146,7 @@ const Map = () => {
       const outages = await axios.get(API_ROUTES.OUTAGES)
       return outages.data
     } catch (error) {
-      console.log('outages error', error)
+      setOutageError('Unable to retrieve outage data. Please try again later.')
     }
   }
 
@@ -151,7 +155,9 @@ const Map = () => {
       const serviceOutages = await axios.get(API_ROUTES.SERVICE_OUTAGES)
       return serviceOutages.data
     } catch (error) {
-      console.log('serviceOutages error', error)
+      setServiceOutageError(
+        'Unable to retrieve service outages data. Please try again later.',
+      )
     }
   }
 
@@ -187,6 +193,42 @@ const Map = () => {
   return (
     <div className={classes.root}>
       <ToggleButton onToggleHandler={onToggleHandler} />
+      {outageError != '' && (
+        <div className={classes.error}>
+          <Typography
+            tagType="h5"
+            styleType="h5"
+            fontType="regularFont"
+            className={classes.errorText}
+          >
+            {outageError}
+          </Typography>
+        </div>
+      )}
+      {serviceOutageError != '' && (
+        <div className={classes.error}>
+          <Typography
+            tagType="h5"
+            styleType="h5"
+            fontType="regularFont"
+            className={classes.errorText}
+          >
+            {serviceOutageError}
+          </Typography>
+        </div>
+      )}
+      {disasterError != '' && (
+        <div className={classes.error}>
+          <Typography
+            tagType="h5"
+            styleType="h5"
+            fontType="regularFont"
+            className={classes.errorText}
+          >
+            {disasterError}
+          </Typography>
+        </div>
+      )}
       <MapContainer
         center={[36.78991208264064, -118.94444972062315]}
         zoom={5}
@@ -322,6 +364,18 @@ const useStyles = makeStyles(() => ({
   },
   DisasterPopupRoot: {
     display: 'inline',
+  },
+  error: {
+    display: 'flex',
+    background: '#f8d7da',
+    marginBottom: '1rem',
+    border: '1px solid #f5c2c7',
+    borderRadius: '0.25rem',
+    justifyContent: 'center',
+    padding: '1rem',
+  },
+  errorText: {
+    color: '#842032',
   },
 }))
 
