@@ -1,21 +1,18 @@
 import { makeStyles } from '@material-ui/core/styles'
 import { Button } from 'src/blitz'
-// import { useAppData } from 'src/hooks'
-// import { COMPONENT_WRAPPER, PADDING } from 'src/constants'
 import { Divider } from '@material-ui/core'
 import { PADDING } from 'src/constants'
 
 const ButtonLinks: React.FC = () => {
-  //const { heading, description, image }: any = useAppData('hero', true)
   const text = [
-    'Useful information',
-    'Waviers',
-    'Urgent Alerts',
-    'Helpful Links',
-    'Social Media',
-    'Government Agency Resources',
+    { text: 'Useful information', link: '#usefulInformation' },
+    { text: 'Waviers', link: '#waviers' },
+    { text: 'Urgent Alerts', link: '#urgentAlerts' },
+    { text: 'Helpful Links', link: '#helpfulLinks' },
+    { text: 'Social Media', link: '#socialMedia' },
+    { text: 'Government Agency Resources', link: '#governmentAgency' },
   ]
-  //useStyles({ background: image?.src })
+
   const classes = useStyles()()
   return (
     <div className={classes.root}>
@@ -28,8 +25,8 @@ const ButtonLinks: React.FC = () => {
               hoverVariant={'primary'}
               type="link"
               className={classes.btn}
-              href={'#'}
-              text={item}
+              href={item.link}
+              text={item.text}
             />
           )
         })}

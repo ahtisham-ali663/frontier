@@ -1,10 +1,7 @@
 import { makeStyles } from '@material-ui/core/styles'
 import { Button, Typography } from 'src/blitz'
-// import { useAppData } from 'src/hooks'
-// import { COMPONENT_WRAPPER, PADDING } from 'src/constants'
 
 const UgentAlerts: React.FC = () => {
-  //const { heading, description, image }: any = useAppData('hero', true)
   const data = {
     heading: 'Urgent alerts in Frontier Service Areas',
     description:
@@ -13,10 +10,9 @@ const UgentAlerts: React.FC = () => {
     buttonText: 'PowerOutages.us',
   }
 
-  //useStyles({ background: image?.src })
   const classes = useStyles()()
   return (
-    <div className={classes.root}>
+    <div className={classes.root} id="urgentAlerts">
       <div className={classes.content}>
         {data?.heading && (
           <Typography
@@ -60,7 +56,7 @@ const UgentAlerts: React.FC = () => {
                 hoverVariant={'primary'}
                 type="link"
                 className={classes.btn}
-                href={'#'}
+                href={'https://poweroutage.us/'}
                 text={data?.buttonText}
               />
             )}
@@ -72,7 +68,7 @@ const UgentAlerts: React.FC = () => {
 }
 
 const useStyles = () =>
-  makeStyles(({ breakpoints }) => ({
+  makeStyles(({}) => ({
     root: {
       padding: 0,
       margin: '0 auto',

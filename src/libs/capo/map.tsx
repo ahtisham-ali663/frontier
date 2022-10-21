@@ -92,12 +92,10 @@ const Map = () => {
     if (outages) {
       setOutage(outages)
     }
-
     if (disaster) {
       const counties = mapDisasterEventsToCounties(disester, serviceCounties)
       setDisaster(counties)
     }
-
     if (serviceOutages) {
       setServiceOutage(serviceOutages)
     }
@@ -105,7 +103,7 @@ const Map = () => {
 
   const mapDisasterEventsToCounties = (
     disasterData: any[],
-    servieCounties: any[],
+    servieCounties: { features: any[] },
   ) => {
     const disasterCounties = servieCounties.features.reduce(
       (soeCounties, county) => {

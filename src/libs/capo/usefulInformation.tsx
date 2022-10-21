@@ -1,13 +1,8 @@
+/* eslint-disable @typescript-eslint/indent */
 import { makeStyles } from '@material-ui/core/styles'
 import { Button, Typography } from 'src/blitz'
-// import { useAppData } from 'src/hooks'
-import { PADDING } from 'src/constants'
-import { LocationOn } from '@material-ui/icons'
-// import PdfIcon from '../../../src/blitz/assets/react-icons/pdfIcon'
-// import { Link, animateScroll as scroll } from 'react-scroll'
 
-const Connections: React.FC = () => {
-  //const { heading, description, image }: any = useAppData('hero', true)
+const UsefulInformation: React.FC = () => {
   const buttonText = {
     value1: 'Facebook',
     value2: ' COVID-19 Information page',
@@ -29,6 +24,7 @@ const Connections: React.FC = () => {
   }
   const listData = [
     {
+      id: '1',
       heading: 'If you lost power:',
       listItem: [
         'If you have Frontier Voice service, it will continue to work for a minimum of eight hours with a fully-charged battery backup unit.',
@@ -36,6 +32,7 @@ const Connections: React.FC = () => {
       ],
     },
     {
+      id: '2',
       heading: 'If you still have power:',
       listItem: [
         'Keep your mobile devices charged.',
@@ -43,6 +40,7 @@ const Connections: React.FC = () => {
       ],
     },
     {
+      id: '3',
       heading: 'If you have power but no Frontier service:',
       listItem: [
         'Check to see if there is a service outage in your area by entering your billing telephone number ',
@@ -58,37 +56,9 @@ const Connections: React.FC = () => {
     },
   ]
 
-  const californiaService = {
-    heading: 'California Service Credits and Waivers',
-    description:
-      'You may be entitled to specific credits and/or waivers of charges during or after a declared state of disaster. If you are out of service and won’t be returning to your home for some time, call us at 1.800.921.8101. We are here to help you manage your account and can help ensure you receive the proper out of service credits and/or waivers(*) for which you qualify.',
-    list: [
-      'Waiver of one-time activation fee for establishing remote call forwarding, remote access to call forwarding, call forwarding features and messaging services;',
-      'Waiver of the monthly rate for one month for remote call forwarding, remote access to call forwarding, call forwarding, call forwarding features, and messaging services;',
-      'Waiver of the service charge for installation of service at the temporary or new permanent location of the customer and again when the customer moves back to the premises;',
-      'Waiver of the fee for one jack and associated wiring at the temporary location regardless of whether the customer has an inside wiring plan;',
-      'Waiver of the fee for up to five free jacks and associated wiring for inside wiring plan customer upon their return to their permanent location; and',
-      'Waiver of the fee for one jack and associated wiring for non-Plan customers upon their return to their permanent location.',
-    ],
-  }
-
-  const information = {
-    heading: 'This information is also available in:',
-    linkText: [
-      'Chinese-Simplified',
-      'Chinese-Traditional',
-      'Korean',
-      'Russian',
-      'Spanish',
-      'Tagalog',
-      'Vitnamese',
-    ],
-  }
-
-  //useStyles({ background: image?.src })
   const classes = useStyles()()
   return (
-    <div className={classes.root}>
+    <div className={classes.root} id="usefulInformation">
       <div className={classes.content}>
         {Heading?.value && (
           <Typography
@@ -101,7 +71,7 @@ const Connections: React.FC = () => {
             {Heading?.value}
           </Typography>
         )}
-        <div className={classes.mainContent} id={1}>
+        <div className={classes.mainContent}>
           {Description?.value1 && (
             <Typography
               tagType="div"
@@ -119,7 +89,7 @@ const Connections: React.FC = () => {
               hoverVariant={'primary'}
               type="link"
               className={classes.btn}
-              href={'#'}
+              href={'https://www.facebook.com/FrontierCorp'}
               text={buttonText?.value1}
             />
           )}
@@ -155,7 +125,7 @@ const Connections: React.FC = () => {
               hoverVariant={'primary'}
               type="link"
               className={classes.btn}
-              href={'#'}
+              href={'https://frontier.com/resources/covid-19'}
               text={buttonText?.value2}
             />
           )}
@@ -187,10 +157,10 @@ const Connections: React.FC = () => {
                 {listItem.listItem.map((list, lowerIndex) => {
                   if (Array.isArray(list)) {
                     return (
-                      <ul className={classes.ulList}>
+                      <ul key={lowerIndex} className={classes.ulList}>
                         {list.map((newList) => {
                           return (
-                            <li key={newList} className={classes.listItem}>
+                            <li key={lowerIndex} className={classes.listItem}>
                               {newList}
                             </li>
                           )
@@ -199,32 +169,36 @@ const Connections: React.FC = () => {
                     )
                   }
                   return (
-                    <li key={list} className={classes.listItem}>
+                    <li key={lowerIndex} className={classes.listItem}>
                       {list}
 
                       {upperIndex === 2 && lowerIndex === 0
                         ? buttonText?.value3 && (
-                          <Button
-                            variant="lite"
-                            hoverVariant={'primary'}
-                            type="link"
-                            className={classes.btn}
-                            href={'#'}
-                            text={buttonText?.value3}
-                          />
-                        )
+                            <Button
+                              variant="lite"
+                              hoverVariant={'primary'}
+                              type="link"
+                              className={classes.btn}
+                              href={
+                                'https://frontier.com/helpcenter/categories/internet/troubleshooting/service-status'
+                              }
+                              text={buttonText?.value3}
+                            />
+                          )
                         : null}
                       {upperIndex === 2 && lowerIndex === 4
                         ? buttonText?.value4 && (
-                          <Button
-                            variant="lite"
-                            hoverVariant={'primary'}
-                            type="link"
-                            className={classes.btn}
-                            href={'#'}
-                            text={buttonText?.value4}
-                          />
-                        )
+                            <Button
+                              variant="lite"
+                              hoverVariant={'primary'}
+                              type="link"
+                              className={classes.btn}
+                              href={
+                                'https://frontier.com/contactus/contact-us#/residential'
+                              }
+                              text={buttonText?.value4}
+                            />
+                          )
                         : null}
                     </li>
                   )
@@ -233,86 +207,14 @@ const Connections: React.FC = () => {
             </>
           )
         })}
-        {californiaService?.heading && (
-          <Typography
-            tagType="div"
-            styleType="h4"
-            fontType="regularFont"
-            color="default"
-            className={classes.ciHeading}
-          >
-            {californiaService?.heading}
-          </Typography>
-        )}
-        <div className={classes.mainContent}>
-          {californiaService?.description && (
-            <Typography
-              tagType="div"
-              styleType="h4"
-              fontType="regularFont"
-              color="default"
-              className={classes.description}
-            >
-              {californiaService?.description}
-            </Typography>
-          )}
-        </div>
-        <div>
-          <ul>
-            {californiaService.list.map((list) => {
-              return (
-                <li key={list} className={classes.listItem}>
-                  {list}
-                </li>
-              )
-            })}
-          </ul>
-        </div>
-        <div className={classes.information}>
-          {information?.heading && (
-            <Typography
-              tagType="div"
-              styleType="h4"
-              fontType="regularFont"
-              color="default"
-              className={classes.ciHeading}
-            >
-              {information?.heading}
-            </Typography>
-          )}
-
-          <div className={classes.iconButton}>
-            {information.linkText.map((links) => {
-              {
-                return (
-                  <>
-                    <div className={classes.iconWithButton}>
-                      <LocationOn />
-                      <Button
-                        variant="lite"
-                        hoverVariant={'primary'}
-                        type="link"
-                        href={'#'}
-                        className={classes.btn}
-                        text={links}
-                      />
-                    </div>
-                  </>
-                )
-              }
-            })}
-          </div>
-        </div>
       </div>
     </div>
   )
 }
-
 const useStyles = () =>
-  makeStyles(({ breakpoints }) => ({
+  makeStyles(({}) => ({
     root: {
       padding: '0',
-
       background: '#F3F4F4',
     },
     content: {
@@ -328,32 +230,18 @@ const useStyles = () =>
       textAlign: 'center',
       marginBottom: '30px',
     },
-    ciHeading: {
-      fontWeight: 'normal',
-      textAlign: 'center',
-      marginBottom: '30px',
-      marginTop: '70px',
-    },
     description: {
       fontSize: '20px',
       lineHeight: '1.5',
       display: 'inline',
-    },
-    information: {
-      marginBottom: '2rem',
-      padding: `0px ${PADDING}px`,
     },
     btn: {
       fontSize: '20px',
       color: 'black',
       '&:hover': {
         color: 'red',
+        textDecoration: 'underline',
       },
-    },
-    iconButton: {
-      display: 'flex',
-      justifyContent: 'left',
-      flexWrap: 'wrap',
     },
     listheading: {
       fontSize: '26px',
@@ -368,15 +256,6 @@ const useStyles = () =>
     ulList: {
       listStyleType: 'square',
     },
-    iconWithButton: {
-      display: 'flex',
-      alignItem: 'center',
-      margin: '12px 0px',
-      padding: '0px 20px',
-      '&:hover': {
-        color: 'red',
-      },
-    },
   }))
 
-export default Connections
+export default UsefulInformation
